@@ -11,7 +11,7 @@
           v-for="(product, index) in products"
           :key="index"
         >
-          <router-link to="/">
+          <router-link :to="{name: 'Products', params: { id: product.id }}">
             <img
               v-if="product.fotos"
               :src="product.fotos[0].src"
