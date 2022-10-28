@@ -11,6 +11,12 @@
         >
       </router-link>
       <router-link
+        to="/user"
+        class="btn"
+        v-if="$store.state.login"
+      >{{name}}</router-link>
+      <router-link
+        v-else
         to="/login"
         class="btn"
       >
@@ -23,6 +29,11 @@
 <script>
 export default {
   name: "TheHeader",
+  computed: {
+    name() {
+      return this.$store.state.usuario.nome.replace(/ .*/, "");
+    },
+  },
 };
 </script>
 
