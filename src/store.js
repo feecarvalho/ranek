@@ -2,19 +2,20 @@ import { createStore } from 'vuex';
 import { api } from './services/api';
 
 export default createStore({
+  strict: true,
   state: {
     login: false,
     usuario: {
       id: '',
-      nome: '',
+      name: '',
       email: '',
-      senha: '',
-      cep: '',
-      rua: '',
-      numero: '',
-      bairro: '',
-      cidade: '',
-      estado: '',
+      street: '',
+      zipcode: '',
+      password: '',
+      number: '',
+      neighbourhood: '',
+      city: '',
+      state: '',
     },
   },
   mutations: {
@@ -22,7 +23,7 @@ export default createStore({
       state.login = payload;
     },
     UPDATE_USER(state, payload) {
-      state.usuario = payload;
+      state.usuario = Object.assign({}, state.usuario, payload);
     },
   },
   actions: {
