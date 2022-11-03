@@ -23,7 +23,7 @@ export default createStore({
       state.login = payload;
     },
     UPDATE_USER(state, payload) {
-      state.usuario = Object.assign({}, state.usuario, payload);
+      state.usuario = Object.assign(state.usuario, payload);
     },
   },
   actions: {
@@ -32,6 +32,10 @@ export default createStore({
         context.commit('UPDATE_USER', response.data);
         context.commit('UPDATE_LOGIN', true);
       });
+    },
+    createUser(context, payload) {
+      context.commit('UPDATE_USER', { id: payload.email });
+      api.post(`/usuario`, payload);
     },
   },
 });

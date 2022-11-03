@@ -31,7 +31,7 @@ export default {
   name: "TheHeader",
   computed: {
     name() {
-      return this.$store.state.usuario.nome.replace(/ .*/, "");
+      return this.$store.state.usuario.name.replace(/ .*/, "");
     },
   },
 };
