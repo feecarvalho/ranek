@@ -1,6 +1,9 @@
 <template>
   <ul v-if="totalPages > 1">
-    <li v-for="pagina in pages" :key="pagina">
+    <li
+      v-for="pagina in pages"
+      :key="pagina"
+    >
       <router-link :to="{query: query(pagina)}">{{pagina}}</router-link>
     </li>
   </ul>
@@ -16,15 +19,15 @@ export default {
     productsTotal: {
       type: Number,
       default: 1,
-    }
+    },
   },
   methods: {
     query(page) {
       return {
         ...this.$route.query,
-        _page: page
-      }
-    }
+        _page: page,
+      };
+    },
   },
   computed: {
     pages() {
@@ -35,21 +38,21 @@ export default {
       const pagesArray = [];
 
       for (let i = 1; i <= total; i++) {
-        pagesArray.push(i)
+        pagesArray.push(i);
       }
 
       pagesArray.splice(0, currentPage - offset);
       pagesArray.splice(range, total);
       return pagesArray;
-    },  
+    },
     totalPages() {
-      const total = this.productsTotal / this.productsByPage
-      return total !== Infinity ? Math.ceil(total) : 0
-    }
-  }
-}
+      const total = this.productsTotal / this.productsByPage;
+      return total !== Infinity ? Math.ceil(total) : 0;
+    },
+  },
+};
 </script>
-<style>
+<style scoped>
 ul {
   grid-column: 1 / -1;
 }
@@ -63,7 +66,8 @@ li a {
   margin: 4px;
 }
 
-li a:hover, li a.active {
+li a:hover,
+li a.active {
   background: #87f;
   color: #fff;
 }

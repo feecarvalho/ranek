@@ -3,6 +3,10 @@ import HomePage from '@/views/HomePage.vue';
 import Product from '@/views/Product.vue';
 import Login from '@/views/Login.vue';
 import User from '@/views/User/User.vue';
+import UserProducts from '@/views/User/UserProducts.vue';
+import UserShops from '@/views/User/UserShops.vue';
+import UserSells from '@/views/User/UserSells.vue';
+import UserEdit from '@/views/User/UserEdit.vue';
 
 const routes = [
   {
@@ -24,9 +28,30 @@ const routes = [
   },
   {
     path: '/user',
-    name: 'User',
     component: User,
     props: true,
+    children: [
+      {
+        path: '',
+        name: 'user',
+        component: UserProducts,
+      },
+      {
+        path: 'sells',
+        name: 'sells',
+        component: UserSells,
+      },
+      {
+        path: 'shops',
+        name: 'shops',
+        component: UserShops,
+      },
+      {
+        path: 'edit',
+        name: 'edit-user',
+        component: UserEdit,
+      },
+    ],
   },
 ];
 

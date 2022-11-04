@@ -28,14 +28,29 @@ export default createStore({
   },
   actions: {
     getUser(context, payload) {
-      api.get(`/usuario/${payload}`).then((response) => {
+      return api.get(`/usuario/${payload}`).then((response) => {
         context.commit('UPDATE_USER', response.data);
         context.commit('UPDATE_LOGIN', true);
       });
     },
     createUser(context, payload) {
       context.commit('UPDATE_USER', { id: payload.email });
-      api.post(`/usuario`, payload);
+      return api.post(`/usuario`, payload);
+    },
+    logoutUser(context) {
+      context.commit('UPDATE_USER', {
+        id: '',
+        name: '',
+        email: '',
+        street: '',
+        zipcode: '',
+        password: '',
+        number: '',
+        neighbourhood: '',
+        city: '',
+        state: '',
+      });
+      context.commit('UPDATE_LOGIN', false);
     },
   },
 });
